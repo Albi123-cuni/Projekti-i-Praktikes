@@ -182,3 +182,20 @@
     border-right-color: var(--border);
   }
 }
+
+.product-card {
+  border: 1px solid #ddd;
+  padding: 15px;
+  width: 200px;
+  border-radius: 10px;
+  text-align: center;
+}
+
+.product-card img {
+  width: 100%;
+}
+
+.price {
+  font-weight: bold;
+  color: green;
+}
