@@ -7,12 +7,12 @@ import About from "./pages/About";
 import Contact from "./pages/Contact";
 import WishList from "./pages/WishList";
 import Cart from "./pages/Cart";
-
-export default function App() {
+import Counter from "./counter";
   return (
     <>
       <Navbar />
-    
+      <Counter />
+
       <Routes>
         <Route path="/" element={<Home />} />
         <Route path="/store" element={<Store />} />
@@ -24,4 +24,3 @@ export default function App() {
     
     </>
   );
-}
