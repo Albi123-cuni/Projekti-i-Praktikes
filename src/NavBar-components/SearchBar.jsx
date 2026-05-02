@@ -1,45 +1,38 @@
-import { useState } from 'react';
-import { Search } from 'lucide-react';
+import { useState } from "react";
+import products from "./data/products";
 
-export default function SearchBar({ placeholder = "Search products...", onSearch }) {
-  const [query, setQuery] = useState('');
+export default function Searchbar() {
+  const [search, setSearch] = useState("");
 
-  const handleSearch = (e) => {
-    if (e.key === 'Enter') {
-      onSearch?.(query);
-    }
-  };
+  const filteredData = products.filter((item) =>
+    item.name.toLowerCase().includes(search.toLowerCase())
+  );
 
   return (
-    <div style={{
-      display: 'flex',
-      alignItems: 'center',
-      backgroundColor: '#fff',
-      borderRadius: '6px',
-      padding: '0.5rem 0.75rem',
-      border: '1px solid #ccc',
-      maxWidth: '300px',
-      transition: 'border-color 0.2s'
-    }}
-    onFocus={(e) => e.currentTarget.style.borderColor = '#3b82f6'}
-    onBlur={(e) => e.currentTarget.style.borderColor = '#ccc'}
-    >
-      <input 
-        type="text" 
-        placeholder={placeholder}
-        value={query}
-        onChange={(e) => setQuery(e.target.value)}
-        onKeyPress={handleSearch}
+    <div style={{ padding: "20px", marginTop: "50px" }}>
+      <input
+        type="text"
+        placeholder="Search products..."
+        value={search}
+        onChange={(e) => setSearch(e.target.value)}
         style={{
-          border: 'none',
-          backgroundColor: 'transparent',
-          outline: 'none',
-          flex: 1,
-          fontSize: '14px',
-          color: '#000'
+          height: "40px",
+          border: "1px solid #ccc",
+          padding: "0 10px",
+          borderRadius: "8px",
+          marginBottom: "20px",
+          width: "100%",
         }}
       />
-      <Search size={16} style={{ color: '#666' }} />
+
+      <ul style={{ listStyle: "none", padding: 0 }}>
+        {filteredData.map((item) => (
+          <li key={item.id} style={{ padding: "10px", borderBottom: "1px solid #eee" }}>
+            <p style={{ fontSize: "18px", margin: 0 }}>{item.name}</p>
+            <p style={{ color: "gray", margin: 0 }}>${item.price}</p>
+          </li>
+        ))}
+      </ul>
     </div>
   );
 }
