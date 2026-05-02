@@ -8,7 +8,7 @@ import Contact from "./pages/Contact";
 import WishList from "./pages/WishList";
 import Cart from "./pages/Cart";
 import Counter from "./counter";
-  
+import LoginPage from "./pages/LoginPage" 
 
 function App() {
 
@@ -24,6 +24,7 @@ return (
         <Route path="/contact" element={<Contact />} />
         <Route path="/wishlist" element={<WishList />} />
         <Route path="/cart" element={<Cart />} />
+        <Route path="/login" element={<LoginPage />} />
       </Routes>
     
     </>
