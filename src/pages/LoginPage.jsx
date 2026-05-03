@@ -1,10 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
+
+  useEffect(() => {
+    try {
+      const savedUser = JSON.parse(localStorage.getItem("user"));
+      const loggedIn = localStorage.getItem("loggedIn") === "true";
+      if (loggedIn && savedUser) {
+        setEmail(savedUser.email);
+        setSuccess(true);
+        setError("");
+      }
+    } catch (error) {
+      console.error("Unable to read login state from localStorage", error);
+    }
+  }, []);
 
   const handleLogin = () => {
     if (!email || !password) {
@@ -35,11 +49,19 @@ export default function LoginPage() {
     if (savedUser.email === email && savedUser.password === password) {
       setError("");
       setSuccess(true);
+      localStorage.setItem("loggedIn", "true");
       console.log("Login successful!");
     } else {
       setError("Incorrect email or password.");
       setSuccess(false);
+      localStorage.setItem("loggedIn", "false");
     }
+  };
+
+  const handleLogout = () => {
+    setSuccess(false);
+    setPassword("");
+    localStorage.setItem("loggedIn", "false");
   };
 
   const handleRegister = () => {
@@ -85,18 +107,34 @@ export default function LoginPage() {
       )}
 
       {success && (
-        <p
-          style={{
-            color: "green",
-            backgroundColor: "#e5ffe5",
-            padding: "0.5rem 1rem",
-            borderRadius: "6px",
-            fontSize: "14px",
-            textAlign: "center",
-          }}
-        >
-          Login successful! Welcome back 🎉
-        </p>
+        <>
+          <p
+            style={{
+              color: "green",
+              backgroundColor: "#e5ffe5",
+              padding: "0.5rem 1rem",
+              borderRadius: "6px",
+              fontSize: "14px",
+              textAlign: "center",
+            }}
+          >
+            Login successful! Welcome back 🎉
+          </p>
+          <button
+            onClick={handleLogout}
+            style={{
+              padding: "0.6rem",
+              backgroundColor: "#ff4d4d",
+              color: "white",
+              border: "none",
+              borderRadius: "6px",
+              fontSize: "14px",
+              cursor: "pointer",
+            }}
+          >
+            Logout
+          </button>
+        </>
       )}
 
       <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
