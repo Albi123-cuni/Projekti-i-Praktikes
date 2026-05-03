@@ -8,9 +8,12 @@ import WishList from "./pages/WishList";
 import Cart from "./pages/Cart";
 import Checkout from "./pages/Checkout";
 import LoginPage from "./pages/LoginPage";
+import Profile from "./pages/Profile";
+import NotFound from "./pages/NotFound";
 import "./App.css";
 
 function App() {
+   const isLoggedIn = localStorage.getItem("user");
   return (
     <>
       <Navbar />
@@ -35,6 +38,12 @@ function App() {
           <Route path="/cart" element={<Cart />} />
           <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<LoginPage />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route
+            path="/profile"
+            element={isLoggedIn ? <Profile /> : <LoginPage />}
+          />
+          <Route path="*" element={<NotFound />} />
         </Routes>
       </main>
     </>

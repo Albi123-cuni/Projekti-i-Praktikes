@@ -1,10 +1,20 @@
 import { Link } from "react-router-dom";
+import { useState } from "react";
+
 import ProductCard from "../components/ProductCard";
 import products from "../data/products";
+import Search from "../NavBar-components/Searchbar";
+import Counter from "../Counter";
+
+import "../App.css";
 
 export default function Home() {
+  const [homeSearch, setHomeSearch] = useState("");
+
   const featuredProducts = products
-    .filter((product) => product.featured)
+    .filter((product) =>
+      product.name.toLowerCase().includes(homeSearch.toLowerCase())
+    )
     .slice(0, 6);
 
   const addToWishlist = (product) => {
@@ -12,7 +22,9 @@ export default function Home() {
       const existing = JSON.parse(localStorage.getItem("wishlist")) || [];
       const alreadySaved = existing.some((item) => item.id === product.id);
       const next = alreadySaved ? existing : [...existing, product];
+
       localStorage.setItem("wishlist", JSON.stringify(next));
+
       if (!alreadySaved) {
         alert(`${product.name} added to your wishlist.`);
       } else {
@@ -25,69 +37,61 @@ export default function Home() {
 
   return (
     <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
-      <section
-        style={{ display: "flex", flexDirection: "column", gap: "16px" }}
-      >
+      
+      <section style={{ display: "flex", flexDirection: "column", gap: "16px" }}>
         <div>
-          <p
-            style={{
-              color: "#4f46e5",
-              fontWeight: "700",
-              letterSpacing: "0.12em",
-              textTransform: "uppercase",
-              margin: 0,
-            }}
-          >
+          <p style={{
+            color: "#4f46e5",
+            fontWeight: "700",
+            letterSpacing: "0.12em",
+            textTransform: "uppercase",
+            margin: 0,
+          }}>
             Featured Picks
           </p>
-          <h1
-            style={{ margin: "8px 0 0", fontSize: "clamp(2.2rem, 3vw, 3rem)" }}
-          >
+
+          <h1 style={{ margin: "8px 0 0", fontSize: "clamp(2.2rem, 3vw, 3rem)" }}>
             Top products from our collection
           </h1>
-          <p
-            style={{
-              color: "#475569",
-              margin: "16px 0 0",
-              maxWidth: "720px",
-              lineHeight: "1.75",
-            }}
-          >
-            Discover the most popular items first. These featured products are
-            handpicked for quality, value, and customer favorites.
+
+          <p style={{
+            color: "#475569",
+            margin: "16px 0 0",
+            maxWidth: "720px",
+            lineHeight: "1.75",
+          }}>
+            Discover the most popular items first.
           </p>
         </div>
 
-        <div
-          style={{
-            display: "flex",
-            flexWrap: "wrap",
-            gap: "12px",
-            alignItems: "center",
-          }}
-        >
+        <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
           <Link
             to="/store"
             style={{
-              display: "inline-flex",
-              alignItems: "center",
-              justifyContent: "center",
               padding: "12px 20px",
               borderRadius: "10px",
               backgroundColor: "#4f46e5",
               color: "#fff",
               textDecoration: "none",
               fontWeight: 600,
-              boxShadow: "0 16px 40px rgba(79, 70, 229, 0.16)",
             }}
           >
             Shop the full collection
           </Link>
+
           <span style={{ color: "#64748b" }}>
-            See all available products on the store page.
+            See all products in store
           </span>
         </div>
       </section>
+
+      <Search
+        value={homeSearch}
+        onSearch={setHomeSearch}
+        placeholder="Search products here..."
+      />
+
+      <Counter />
 
       <div
         style={{

@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+
 import Logo from "./Logo";
 import NavLinks from "./NavLinks";
 import SearchBar from "./SearchBar";
@@ -9,6 +10,7 @@ import DesktopIcons from "./DesktopIcons";
 
 export default function Navbar() {
   const navigate = useNavigate();
+
   const [isOpen, setIsOpen] = useState(false);
   const [cartCount] = useState(3);
   const [wishlistCount] = useState(2);
@@ -27,14 +29,14 @@ export default function Navbar() {
   };
 
   const handleCart = () => {
-    console.log("Cart clicked");
+    navigate("/cart");
   };
 
   const handleWishlist = () => {
-    console.log("Wishlist clicked");
+    navigate("/wishlist");
   };
 
-  const navItems = ["Home", "Store", "About", "Contact"];
+  const navItems = ["Home", "Store", "About", "Contact", "Login", "Profile"];
 
   return (
     <nav
@@ -55,17 +57,12 @@ export default function Navbar() {
           flexWrap: "wrap",
         }}
       >
-        <div
-          style={{
-            display: "flex",
-            alignItems: "center",
-            gap: "2rem",
-            minWidth: 0,
-          }}
-        >
+        {/* LOGO */}
+        <div style={{ display: "flex", alignItems: "center", gap: "2rem" }}>
           <Logo text="Store" />
         </div>
 
+        {/* NAV LINKS */}
         <div
           style={{ display: "none", flex: 1, justifyContent: "center" }}
           className="desktop-nav"
@@ -73,6 +70,7 @@ export default function Navbar() {
           <NavLinks items={navItems} onLink={handleNavLink} />
         </div>
 
+        {/* SEARCH */}
         <div
           style={{ display: "none", flex: 1, justifyContent: "center" }}
           className="desktop-search"
