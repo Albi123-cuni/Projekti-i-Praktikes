@@ -1,5 +1,5 @@
 import ProductCard from "../components/ProductCard";
-import { products } from "../data/products";
+
 
 export default function Home() {
   return (
@@ -7,9 +7,11 @@ export default function Home() {
       <h1>Home Page</h1>
 
       <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-        {products.map((product) => (
-          <ProductCard key={product.id} product={product} />
-        ))}
+       
+        <ProductCard
+          name="Product 1"
+          price={29.99} 
+        />
       </div>
     </div>
   );
