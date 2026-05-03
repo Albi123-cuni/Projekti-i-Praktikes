@@ -47,7 +47,7 @@ export default function Navbar() {
         }}
       >
         {/* Logo */}
-        <Logo text="Store" onClick={() => console.log("Logo clicked")} />
+       
 
         {/* Desktop Nav */}
         <div style={{ display: "none", flex: 1 }} className="desktop-nav">
