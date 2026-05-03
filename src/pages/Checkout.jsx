@@ -16,7 +16,7 @@ export default function Checkout() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert("Payment processed! (This is a demo)");
+    alert("Payment processed!");
   };
 
   return (
