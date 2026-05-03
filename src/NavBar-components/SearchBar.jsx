@@ -1,33 +1,48 @@
-import { useState } from "react";
+import { useId } from "react";
 
-
-export default function Searchbar() {
-  const [search, setSearch] = useState("");
-
-  
+export default function SearchBar({
+  value = "",
+  onSearch,
+  placeholder = "Search...",
+  style,
+  className,
+}) {
+  const id = useId();
 
   return (
-    <div style={{ padding: "20px", marginTop: "50px" }}>
-      <input
-        type="text"
-        placeholder="Search products..."
-        value={search}
-        onChange={(e) => setSearch(e.target.value)}
+    <div style={{ minWidth: 0, ...style }} className={className}>
+      <label
+        htmlFor={id}
         style={{
-          height: "40px",
-          border: "1px solid #ccc",
-          padding: "0 10px",
-          borderRadius: "8px",
-          marginBottom: "20px",
+          position: "absolute",
+          width: "1px",
+          height: "1px",
+          padding: 0,
+          overflow: "hidden",
+          clip: "rect(0, 0, 0, 0)",
+          whiteSpace: "nowrap",
+          border: 0,
+        }}
+      >
+        Search
+      </label>
+      <input
+        id={id}
+        type="search"
+        placeholder={placeholder}
+        value={value}
+        onChange={(e) => onSearch?.(e.target.value)}
+        style={{
           width: "100%",
+          minWidth: 0,
+          height: "48px",
+          padding: "0 16px",
+          borderRadius: "10px",
+          border: "1px solid #ccc",
+          fontSize: "15px",
+          boxSizing: "border-box",
         }}
       />
-
-      <ul style={{ listStyle: "none", padding: 0 }}>
-       
-          
-      
-      </ul>
     </div>
   );
 }

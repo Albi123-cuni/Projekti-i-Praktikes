@@ -1,21 +1,114 @@
+import { Link } from "react-router-dom";
 import ProductCard from "../components/ProductCard";
-
+import products from "../data/products";
 
 export default function Home() {
-  return (
-    <div>
-      <h1>Home Page</h1>
+  const featuredProducts = products
+    .filter((product) => product.featured)
+    .slice(0, 6);
 
-      <div style={{ display: "flex", gap: "20px", flexWrap: "wrap" }}>
-       
-        <ProductCard
-          name="Product 1"
-          price={29.99} 
-        />
+  const addToWishlist = (product) => {
+    try {
+      const existing = JSON.parse(localStorage.getItem("wishlist")) || [];
+      const alreadySaved = existing.some((item) => item.id === product.id);
+      const next = alreadySaved ? existing : [...existing, product];
+      localStorage.setItem("wishlist", JSON.stringify(next));
+      if (!alreadySaved) {
+        alert(`${product.name} added to your wishlist.`);
+      } else {
+        alert(`${product.name} is already in your wishlist.`);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+
+  return (
+    <div style={{ display: "flex", flexDirection: "column", gap: "28px" }}>
+      <section
+        style={{ display: "flex", flexDirection: "column", gap: "16px" }}
+      >
+        <div>
+          <p
+            style={{
+              color: "#4f46e5",
+              fontWeight: "700",
+              letterSpacing: "0.12em",
+              textTransform: "uppercase",
+              margin: 0,
+            }}
+          >
+            Featured Picks
+          </p>
+          <h1
+            style={{ margin: "8px 0 0", fontSize: "clamp(2.2rem, 3vw, 3rem)" }}
+          >
+            Top products from our collection
+          </h1>
+          <p
+            style={{
+              color: "#475569",
+              margin: "16px 0 0",
+              maxWidth: "720px",
+              lineHeight: "1.75",
+            }}
+          >
+            Discover the most popular items first. These featured products are
+            handpicked for quality, value, and customer favorites.
+          </p>
+        </div>
+
+        <div
+          style={{
+            display: "flex",
+            flexWrap: "wrap",
+            gap: "12px",
+            alignItems: "center",
+          }}
+        >
+          <Link
+            to="/store"
+            style={{
+              display: "inline-flex",
+              alignItems: "center",
+              justifyContent: "center",
+              padding: "12px 20px",
+              borderRadius: "10px",
+              backgroundColor: "#4f46e5",
+              color: "#fff",
+              textDecoration: "none",
+              fontWeight: 600,
+              boxShadow: "0 16px 40px rgba(79, 70, 229, 0.16)",
+            }}
+          >
+            Shop the full collection
+          </Link>
+          <span style={{ color: "#64748b" }}>
+            See all available products on the store page.
+          </span>
+        </div>
+      </section>
+
+      <div
+        style={{
+          display: "grid",
+          gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
+          gap: "24px",
+        }}
+      >
+        {featuredProducts.map((product) => (
+          <ProductCard
+            key={product.id}
+            id={product.id}
+            name={product.name}
+            price={product.price}
+            image={product.image}
+            badge={product.badge}
+            description={product.description}
+            onAddToWishlist={() => addToWishlist(product)}
+          />
+        ))}
       </div>
     </div>
   );
 }
-
-// ktu do jen produktet + filter 
-//david + ?

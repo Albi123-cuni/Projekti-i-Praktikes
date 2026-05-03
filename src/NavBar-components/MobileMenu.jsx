@@ -1,31 +1,57 @@
+import { useState } from "react";
+import { Link } from "react-router-dom";
 import { Heart, ShoppingCart } from "lucide-react";
 import SearchBar from "./SearchBar";
 
 export default function MobileMenu({
   isOpen = false,
-  items = ["Home", "About", "Contact"],
+  items = ["Home", "Store", "About", "Contact"],
   cartCount = 0,
   wishlistCount = 0,
   onNavLink,
   onCart,
   onWishlist,
+  placeholder = "Search...",
 }) {
+  const [query, setQuery] = useState("");
+
   if (!isOpen) return null;
+
+  const getPath = (item) => {
+    switch (item.toLowerCase()) {
+      case "home":
+        return "/";
+      case "about":
+        return "/about";
+      case "contact":
+        return "/contact";
+      case "wishlist":
+        return "/wishlist";
+      case "cart":
+        return "/cart";
+      case "login":
+        return "/login";
+      default:
+        return "/";
+    }
+  };
 
   return (
     <div
       style={{
         borderTop: "1px solid #ccc",
-        padding: "1rem",
+        padding: "1rem 1rem 1.5rem",
         backgroundColor: "#f5f5f5",
       }}
     >
-      {/* Search in Mobile Menu */}
       <div style={{ marginBottom: "1rem" }}>
-        <SearchBar placeholder="Search..." />
+        <SearchBar
+          value={query}
+          onSearch={(next) => setQuery(next)}
+          placeholder={placeholder}
+        />
       </div>
 
-      {/* Navigation Links in Mobile */}
       <div
         style={{
           display: "flex",
@@ -35,13 +61,10 @@ export default function MobileMenu({
         }}
       >
         {items.map((item) => (
-          <a
+          <Link
             key={item}
-            href="#"
-            onClick={(e) => {
-              e.preventDefault();
-              onNavLink?.(item);
-            }}
+            to={getPath(item)}
+            onClick={() => onNavLink?.(item)}
             style={{
               color: "#000",
               textDecoration: "none",
@@ -49,11 +72,10 @@ export default function MobileMenu({
             }}
           >
             {item}
-          </a>
+          </Link>
         ))}
       </div>
 
-      {/* Cart and Wishlist in Mobile */}
       <div
         style={{
           display: "flex",

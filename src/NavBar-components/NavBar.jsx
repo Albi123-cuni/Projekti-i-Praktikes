@@ -1,15 +1,18 @@
 import { useState } from "react";
-import  Logo  from "./Logo";
-import  NavLinks  from "./NavLinks";
-import  SearchBar  from "./SearchBar";
+import { useNavigate } from "react-router-dom";
+import Logo from "./Logo";
+import NavLinks from "./NavLinks";
+import SearchBar from "./SearchBar";
 import HamburgerButton from "./HamburgerButton";
-import  MobileMenu  from "./MobileMenu";
+import MobileMenu from "./MobileMenu";
 import DesktopIcons from "./DesktopIcons";
 
 export default function Navbar() {
+  const navigate = useNavigate();
   const [isOpen, setIsOpen] = useState(false);
   const [cartCount] = useState(3);
   const [wishlistCount] = useState(2);
+  const [searchQuery, setSearchQuery] = useState("");
 
   const handleNavLink = (item) => {
     console.log("Navigating to:", item);
@@ -17,7 +20,10 @@ export default function Navbar() {
   };
 
   const handleSearch = (query) => {
-    console.log("Searching for:", query);
+    setSearchQuery(query);
+    if (query.trim()) {
+      navigate(`/store?search=${encodeURIComponent(query)}`);
+    }
   };
 
   const handleCart = () => {
@@ -27,6 +33,8 @@ export default function Navbar() {
   const handleWishlist = () => {
     console.log("Wishlist clicked");
   };
+
+  const navItems = ["Home", "Store", "About", "Contact"];
 
   return (
     <nav
@@ -39,28 +47,48 @@ export default function Navbar() {
         style={{
           maxWidth: "1200px",
           margin: "0 auto",
-          padding: "1rem",
+          padding: "1.5rem 20px",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          gap: "2rem",
+          gap: "2.5rem",
+          flexWrap: "wrap",
         }}
       >
-        {/* Logo */}
-        <Logo text="Store" onClick={() => console.log("Logo clicked")} />
-
-        {/* Desktop Nav */}
-        <div style={{ display: "none", flex: 1 }} className="desktop-nav">
-          <NavLinks onLink={handleNavLink} />
+        <div
+          style={{
+            display: "flex",
+            alignItems: "center",
+            gap: "2rem",
+            minWidth: 0,
+          }}
+        >
+          <Logo text="Store" />
         </div>
 
-        {/* Search */}
-        <div style={{ display: "none", flex: 1 }} className="desktop-search">
-          <SearchBar onSearch={handleSearch} />
+        <div
+          style={{ display: "none", flex: 1, justifyContent: "center" }}
+          className="desktop-nav"
+        >
+          <NavLinks items={navItems} onLink={handleNavLink} />
         </div>
 
-        {/* Desktop Icons */}
-        <div style={{ display: "none" }} className="desktop-icons">
+        <div
+          style={{ display: "none", flex: 1, justifyContent: "center" }}
+          className="desktop-search"
+        >
+          <SearchBar
+            value={searchQuery}
+            onSearch={handleSearch}
+            placeholder="Search products..."
+            style={{ maxWidth: "380px" }}
+          />
+        </div>
+
+        <div
+          style={{ display: "none", justifyContent: "flex-end" }}
+          className="desktop-icons"
+        >
           <DesktopIcons
             cartCount={cartCount}
             wishlistCount={wishlistCount}
@@ -69,15 +97,14 @@ export default function Navbar() {
           />
         </div>
 
-        {/* Hamburger Menu */}
         <div className="mobile-menu-btn">
           <HamburgerButton isOpen={isOpen} onClick={() => setIsOpen(!isOpen)} />
         </div>
       </div>
 
-      {/* Mobile Menu */}
       <MobileMenu
         isOpen={isOpen}
+        items={navItems}
         cartCount={cartCount}
         wishlistCount={wishlistCount}
         onNavLink={handleNavLink}
