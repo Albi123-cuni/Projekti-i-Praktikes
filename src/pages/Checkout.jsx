@@ -8,6 +8,9 @@ export default function Checkout() {
     address: "",
     email: "",
     phone: "",
+    state: "",
+    city: "",
+    postalCode: "",
   });
 
   const handleChange = (e) => {
@@ -23,7 +26,7 @@ export default function Checkout() {
     <div style={styles.container}>
       <div style={styles.box}>
         <button style={styles.backBtn} onClick={() => navigate("/cart")}>
-          ← Back
+          Back
         </button>
 
         <h2 style={styles.title}>Checkout</h2>
@@ -69,6 +72,36 @@ export default function Checkout() {
             style={styles.input}
           />
 
+          <input
+            type="text"
+            name="state"
+            placeholder="Shteti"
+            value={formData.state}
+            onChange={handleChange}
+            required
+            style={styles.input}
+          />
+
+          <input
+            type="text"
+            name="city"
+            placeholder="Qyteti"
+            value={formData.city}
+            onChange={handleChange}
+            required
+            style={styles.input}
+          />
+
+          <input
+            type="number"
+            name="postalCode"
+            placeholder="Kodi Postal"
+            value={formData.postalCode}
+            onChange={handleChange}
+            required
+            style={styles.input}
+          />
+
           <button type="submit" style={styles.button}>
             Pay
           </button>
@@ -76,7 +109,7 @@ export default function Checkout() {
       </div>
     </div>
   );
-}
+}     
 
 const styles = {
   container: {
