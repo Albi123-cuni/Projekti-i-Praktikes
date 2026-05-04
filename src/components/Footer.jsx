@@ -1,5 +1,8 @@
 import React from "react";
+<<<<<<< HEAD
 
+=======
+>>>>>>> 850ab675fb7bb70ee5edb23c32e7cee4590154ce
 export default function Footer() {
   const styles = {
     footer: {
