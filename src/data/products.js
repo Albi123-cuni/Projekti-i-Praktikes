@@ -8,7 +8,7 @@ const products = [
     description:
       "Powerful 15-inch laptop with Intel i7 processor, 16GB RAM, and 512GB SSD. Perfect for professionals and creators.",
     image:
-      "https://www.youtube.com/watch?v=T7ZqdzO4cm4",
+      "https://m.media-amazon.com/images/I/71yKxEaoVqL.jpg",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const products = [
     description:
       "Latest flagship smartphone with 120Hz display, 5G connectivity, and advanced camera system.",
     image:
-      "https://media.wired.com/photos/5b22c5c4b878a15e9ce80d92/master/pass/iphonex-TA.jpg",
+      "https://m.media-amazon.com/images/I/517cbS1x8gL.jpg",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const products = [
     description:
       "10.5-inch tablet with stunning display, great for entertainment and productivity on the go.",
     image:
-      "https://www.lenovo.com/us/en/p/tablets/android-tablets/lenovo-tab-series/lenovo-tab-plus/len103l0024?srsltid=AfmBOoqHjRE-NqhTITld6utzJhXylxwNgnKa4OriVEPk2i3yq3cmCtZL",
+      "https://p2-ofp.static.pub//fes/cms/2024/04/02/ktc2e0nyhy9kgheh7b6sraf3t5lg78015342.png",
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const products = [
     description:
       "Premium noise-cancelling headphones with 30-hour battery life and crystal-clear sound quality.",
     image:
-      "https://www.amazon.com/Bluetooth-Headphones-Cancelling-Wireless-Playtime/dp/B0C2D21HBX",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRqbIozOj4-ZPTj0mMD3bAMCp7HlcU8jhs4MQ&s",
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ const products = [
     description:
       "Professional mechanical keyboard with RGB lighting and tactile switches for gaming and typing.",
     image:
-      "https://www.nytimes.com/wirecutter/reviews/our-favorite-mechanical-keyboards/",
+      "https://m.media-amazon.com/images/I/61P7MvyRbUL._AC_UF1000,1000_QL80_.jpg",
   },
   {
     id: 6,
@@ -74,7 +74,7 @@ const products = [
     description:
       "27-inch 4K monitor with HDR support and 144Hz refresh rate for immersive viewing experience.",
     image:
-      "https://www.philips.co.za/c-p/276E8VJSB_73/4k-ultra-hd-lcd-monitor",
+      "https://sm.pcmag.com/pcmag_uk/photo/b/benq-pd322/benq-pd3225u_zz6z.jpg",
   },
   {
     id: 8,
@@ -85,7 +85,7 @@ const products = [
     description:
       "All-in-one inkjet printer with wireless connectivity and fast printing speeds up to 15 pages per minute.",
     image:
-      "https://images.unsplash.com/photo-1612198188060-c7c2a3b66eae?w=400&h=220&fit=crop",
+      "https://hips.hearstapps.com/hmg-prod/images/epson-et-3950-printer-011-690e5fb0435c0.jpg",
   },
   {
     id: 9,
@@ -96,7 +96,7 @@ const products = [
     description:
       "Dual-band Wi-Fi 6 router with gigabit ethernet for blazing-fast internet speeds throughout your home.",
     image:
-      "https://images.unsplash.com/photo-1598327105666-5b89351aff97?w=400&h=220&fit=crop",
+      "https://www.linksys.com/cdn/shop/articles/Tech_Brief_Router_white_48682d98-f68c-451f-910e-b3b15e33dec0.png?v=1763435065",
   },
   {
     id: 10,
