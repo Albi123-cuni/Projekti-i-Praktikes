@@ -1,3 +1,6 @@
+
+import Footer from "../components/Footer";
+
 export default function Profile() {
   const user = JSON.parse(localStorage.getItem("user"));
 
@@ -20,6 +23,7 @@ export default function Profile() {
       ) : (
         <p>You are not logged in</p>
       )}
+      <Footer />
     </div>
   );
 }

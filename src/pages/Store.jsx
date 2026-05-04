@@ -4,6 +4,8 @@ import ProductCard from "../components/ProductCard";
 import SearchBar from "../NavBar-components/SearchBar";
 import products from "../data/products";
 
+import Footer from "../components/Footer";
+
 export default function Store() {
   const [searchParams] = useSearchParams();
   const urlQuery = searchParams.get("search") || "";
@@ -59,7 +61,7 @@ export default function Store() {
     }
   };
 
-  // Shared styles for the improved select button
+ 
   const selectStyle = {
     padding: "12px 16px",
     borderRadius: "12px",
@@ -111,7 +113,7 @@ export default function Store() {
           placeholder="Search items..."
           style={{ width: "100%", maxWidth: "400px" }}
         />
-
+        {/* Sort Dropdown */}
         <div style={{ position: "relative" }}>
           <select
             value={sortOrder}
@@ -161,6 +163,7 @@ export default function Store() {
           </p>
         </div>
       )}
+      <Footer     />
     </div>
   );
 }

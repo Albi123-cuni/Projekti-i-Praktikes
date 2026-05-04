@@ -1,3 +1,6 @@
+
+ import Footer from "../components/Footer";
+
 export default function About() {
   return (
     <div
@@ -284,6 +287,7 @@ export default function About() {
           Visit Our Shop
         </a>
       </section>
+      <Footer />
     </div>
   );
 }

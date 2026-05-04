@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
+import Footer from "../components/Footer";
 export default function Checkout() {
   const navigate = useNavigate();
   const [formData, setFormData] = useState({
@@ -107,6 +108,7 @@ export default function Checkout() {
           </button>
         </form>
       </div>
+      <Footer />
     </div>
   );
 }     

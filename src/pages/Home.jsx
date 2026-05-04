@@ -1,9 +1,11 @@
 import { Link } from "react-router-dom";
 import { useState } from "react";
 
+import Footer from "../components/Footer";
+
 import ProductCard from "../components/ProductCard";
 import products from "../data/products";
-import Search from "../NavBar-components/Searchbar";
+import Search from "../NavBar-components/SearchBar";
 import Counter from "../Counter";
 
 import "../App.css";
@@ -113,6 +115,7 @@ export default function Home() {
           />
         ))}
       </div>
+      <Footer />
     </div>
   );
 }

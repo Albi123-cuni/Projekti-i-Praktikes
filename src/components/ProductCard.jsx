@@ -19,11 +19,14 @@ function ProductCard({
       {badge ? <span className="product-badge">{badge}</span> : null}
 
       <div className="product-image-wrapper">
-        <img
-          src={image || "https://via.placeholder.com/400x220?text=No+Image"}
-          alt={name}
-          loading="lazy"
-        />
+      <img 
+  src={image} 
+  alt={name}
+  onError={(e) => {
+    console.error(`Failed to load image for ${name}: ${image}`);
+    e.target.src = '/fallback-image.jpg';
+  }}
+/>
       </div>
 
       <div className="product-details">

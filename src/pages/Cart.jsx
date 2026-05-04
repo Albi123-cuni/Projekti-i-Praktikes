@@ -2,6 +2,8 @@ import { useState, useEffect } from "react"
 import { useNavigate } from "react-router-dom"
 import products from "../data/products"
 
+import Footer from "../components/Footer";
+
 export default function Cart() {
   const [cart, setCart] = useState(() => {
     try {
@@ -140,6 +142,7 @@ export default function Cart() {
           Continue Checkout
         </button>
       </div>
+      <Footer />
     </div>
   )
 }

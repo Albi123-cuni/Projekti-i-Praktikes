@@ -1,5 +1,7 @@
 import { useState, useEffect } from "react";
 
+import Footer from "../components/Footer";
+
 export default function WishList() {
   const [wishlist, setWishlist] = useState(() => {
     try {
@@ -136,6 +138,7 @@ export default function WishList() {
           ))}
         </ul>
       )}
+      <Footer />
     </div>
   );
 }
