@@ -20,52 +20,109 @@ export default function Checkout() {
   };
 
   return (
-    <div style={{ padding: "20px" }}>
-      <button onClick={() => navigate('/cart')}>Back to Cart</button>
-      <h1>Checkout</h1>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Name:</label>
+    <div style={styles.container}>
+      <div style={styles.box}>
+        <button style={styles.backBtn} onClick={() => navigate("/cart")}>
+          ← Back
+        </button>
+
+        <h2 style={styles.title}>Checkout</h2>
+
+        <form onSubmit={handleSubmit} style={styles.form}>
           <input
             type="text"
             name="name"
+            placeholder="Full Name"
             value={formData.name}
             onChange={handleChange}
             required
+            style={styles.input}
           />
-        </div>
-        <div>
-          <label>Address:</label>
+
           <input
             type="text"
             name="address"
+            placeholder="Address"
             value={formData.address}
             onChange={handleChange}
             required
+            style={styles.input}
           />
-        </div>
-        <div>
-          <label>Email:</label>
+
           <input
             type="email"
             name="email"
+            placeholder="Email"
             value={formData.email}
             onChange={handleChange}
             required
+            style={styles.input}
           />
-        </div>
-        <div>
-          <label>Phone:</label>
+
           <input
             type="tel"
             name="phone"
+            placeholder="Phone"
             value={formData.phone}
             onChange={handleChange}
             required
+            style={styles.input}
           />
-        </div>
-        <button type="submit">Pay with Card</button>
-      </form>
+
+          <button type="submit" style={styles.button}>
+            Pay
+          </button>
+        </form>
+      </div>
     </div>
   );
 }
+
+const styles = {
+  container: {
+    minHeight: "100vh",
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    background: "#f5f5f5",
+    fontFamily: "Arial, sans-serif",
+  },
+  box: {
+    background: "#fff",
+    padding: "25px",
+    borderRadius: "8px",
+    width: "100%",
+    maxWidth: "400px",
+    border: "1px solid #ddd",
+  },
+  backBtn: {
+    background: "none",
+    border: "none",
+    cursor: "pointer",
+    marginBottom: "10px",
+    fontSize: "14px",
+  },
+  title: {
+    marginBottom: "15px",
+  },
+  form: {
+    display: "flex",
+    flexDirection: "column",
+    gap: "10px",
+  },
+  input: {
+    padding: "10px",
+    borderRadius: "5px",
+    border: "1px solid #ccc",
+    fontSize: "14px",
+  },
+  button: {
+    marginTop: "10px",
+    padding: "10px",
+    border: "none",
+    borderRadius: "5px",
+    background: "#333",
+    color: "#fff",
+    cursor: "pointer",
+  },
+};
