@@ -12,7 +12,7 @@ import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import "./App.css";
 import ProtectedRoute from "./components/ProtectedRoute";
-import Layout from "./components/Layout";
+import Layout from "./components/Profile/Layout";
 
 function App() {
   return (
