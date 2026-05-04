@@ -56,7 +56,6 @@ export default function Cart() {
 
   return (
     <div style={styles.container}>
-      
       <h1 style={styles.title}>Cart</h1>
       <h2>Products</h2>
 
