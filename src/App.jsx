@@ -11,9 +11,10 @@ import LoginPage from "./pages/LoginPage";
 import Profile from "./pages/Profile";
 import NotFound from "./pages/NotFound";
 import "./App.css";
+import ProtectedRoute from "./components/ProtectedRoute";
+
 
 function App() {
-   const isLoggedIn = localStorage.getItem("user");
   return (
     <>
       <Navbar />
@@ -30,19 +31,36 @@ function App() {
         }}
       >
         <Routes>
+          
           <Route path="/" element={<Home />} />
           <Route path="/store" element={<Store />} />
           <Route path="/about" element={<About />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/wishlist" element={<WishList />} />
-          <Route path="/cart" element={<Cart />} />
-          <Route path="/checkout" element={<Checkout />} />
           <Route path="/login" element={<LoginPage />} />
-          <Route path="/profile" element={<Profile />} />
-          <Route
-            path="/profile"
-            element={isLoggedIn ? <Profile /> : <LoginPage />}
-          />
+
+          
+          <Route path="/wishlist" element={
+            <ProtectedRoute>
+              <WishList />
+            </ProtectedRoute>
+          } />
+          <Route path="/cart" element={
+            <ProtectedRoute>
+              <Cart />
+            </ProtectedRoute>
+          } />
+          <Route path="/checkout" element={
+            <ProtectedRoute>
+              <Checkout />
+            </ProtectedRoute>
+          } />
+          <Route path="/profile" element={
+            <ProtectedRoute>
+              <Profile />
+            </ProtectedRoute>
+          } />
+
+          
           <Route path="*" element={<NotFound />} />
         </Routes>
       </main>

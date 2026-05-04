@@ -1,24 +1,12 @@
-import { useState, useEffect } from "react";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
-
-  useEffect(() => {
-    try {
-      const savedUser = JSON.parse(localStorage.getItem("user"));
-      const loggedIn = localStorage.getItem("loggedIn") === "true";
-      if (loggedIn && savedUser) {
-        setEmail(savedUser.email);
-        setSuccess(true);
-        setError("");
-      }
-    } catch (error) {
-      console.error("Unable to read login state from localStorage", error);
-    }
-  }, []);
+  const navigate = useNavigate();
 
   const handleLogin = () => {
     if (!email || !password) {
@@ -37,7 +25,6 @@ export default function LoginPage() {
       return;
     }
 
-    // Get saved user from localStorage
     const savedUser = JSON.parse(localStorage.getItem("user"));
 
     if (!savedUser) {
@@ -49,19 +36,16 @@ export default function LoginPage() {
     if (savedUser.email === email && savedUser.password === password) {
       setError("");
       setSuccess(true);
-      localStorage.setItem("loggedIn", "true");
+      localStorage.setItem("isLoggedIn", "true");
       console.log("Login successful!");
+      
+      setTimeout(() => {
+        navigate("/");
+      }, 1000);
     } else {
       setError("Incorrect email or password.");
       setSuccess(false);
-      localStorage.setItem("loggedIn", "false");
     }
-  };
-
-  const handleLogout = () => {
-    setSuccess(false);
-    setPassword("");
-    localStorage.setItem("loggedIn", "false");
   };
 
   const handleRegister = () => {
@@ -69,7 +53,14 @@ export default function LoginPage() {
       setError("Please fill in all fields to register.");
       return;
     }
-    // Save user to localStorage
+    if (!email.includes("@")) {
+      setError("Please enter a valid email.");
+      return;
+    }
+    if (password.length < 6) {
+      setError("Password must be at least 6 characters.");
+      return;
+    }
     localStorage.setItem("user", JSON.stringify({ email, password }));
     setError("");
     alert(`Account created for ${email}! You can now login.`);
@@ -91,6 +82,7 @@ export default function LoginPage() {
     >
       <h2 style={{ textAlign: "center", marginBottom: "0.5rem" }}>Login</h2>
 
+    
       {error && (
         <p
           style={{
@@ -106,37 +98,23 @@ export default function LoginPage() {
         </p>
       )}
 
+      
       {success && (
-        <>
-          <p
-            style={{
-              color: "green",
-              backgroundColor: "#e5ffe5",
-              padding: "0.5rem 1rem",
-              borderRadius: "6px",
-              fontSize: "14px",
-              textAlign: "center",
-            }}
-          >
-            Login successful! Welcome back 🎉
-          </p>
-          <button
-            onClick={handleLogout}
-            style={{
-              padding: "0.6rem",
-              backgroundColor: "#ff4d4d",
-              color: "white",
-              border: "none",
-              borderRadius: "6px",
-              fontSize: "14px",
-              cursor: "pointer",
-            }}
-          >
-            Logout
-          </button>
-        </>
+        <p
+          style={{
+            color: "green",
+            backgroundColor: "#e5ffe5",
+            padding: "0.5rem 1rem",
+            borderRadius: "6px",
+            fontSize: "14px",
+            textAlign: "center",
+          }}
+        >
+          Login successful! Redirecting... 🎉
+        </p>
       )}
 
+      
       <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
         <label style={{ fontSize: "14px", fontWeight: "bold" }}>Email</label>
         <input
@@ -153,6 +131,7 @@ export default function LoginPage() {
         />
       </div>
 
+      
       <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
         <label style={{ fontSize: "14px", fontWeight: "bold" }}>Password</label>
         <input
@@ -169,6 +148,7 @@ export default function LoginPage() {
         />
       </div>
 
+      
       <button
         onClick={handleLogin}
         style={{
@@ -186,6 +166,7 @@ export default function LoginPage() {
         Login
       </button>
 
+      
       <button
         onClick={handleRegister}
         style={{
