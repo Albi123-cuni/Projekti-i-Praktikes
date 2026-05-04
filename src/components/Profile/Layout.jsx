@@ -1,11 +1,10 @@
 import React from "react";
 import "./layout.css";
-import Footer from "./components/Footer";
+import Footer from "../../components/Footer.jsx";
 
 const Layout = ({ children }) => {
   return (
     <div className="layout">
-
       {/* HEADER */}
       <header className="header">
         <div className="logo">ShopX</div>
@@ -23,16 +22,11 @@ const Layout = ({ children }) => {
         </div>
       </header>
 
-      {/* MAIN CONTENT */}
-      <main className="main">
-        {children}
-      </main>
+      
+      <main className="main">{children}</main>
 
-      {/* FOOTER */}
-      <footer className="footer">
-        <p>© 2026 ShopX. All rights reserved.</p>
-      </footer>
-
+      
+      <Footer />
     </div>
   );
 };
