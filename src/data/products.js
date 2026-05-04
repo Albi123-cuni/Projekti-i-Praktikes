@@ -63,7 +63,7 @@ const products = [
     description:
       "High-precision gaming mouse with adjustable DPI and ergonomic design for competitive gaming.",
     image:
-      "https://www.maxgaming.com/en/wireless-mouses/g502-x-plus-wireless-gaming-mouse-rgb-black",
+      "https://www.power-x.in/cdn/shop/files/Front.jpg?v=1737709078&width=3000",
   },
   {
     id: 7,
@@ -118,7 +118,7 @@ const products = [
     description:
       "Feature-rich smartwatch with fitness tracking, heart rate monitoring, and 7-day battery life.",
     image:
-      "https://images.unsplash.com/photo-1523275335684-37898b6baf30?w=400&h=220&fit=crop",
+      "https://ibuy.al/wp-content/uploads/2020/04/ore-inteligjente-apple-watch-seria-5.jpg",
   },
   {
     id: 12,
