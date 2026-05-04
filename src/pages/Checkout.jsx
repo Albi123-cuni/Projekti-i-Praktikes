@@ -109,7 +109,7 @@ export default function Checkout() {
       </div>
     </div>
   );
-}
+}     
 
 const styles = {
   container: {
