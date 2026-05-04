@@ -107,7 +107,7 @@ const products = [
     description:
       "1080p HD webcam with auto-focus and built-in microphone, perfect for video calls and streaming.",
     image:
-      "https://images.unsplash.com/photo-1595225476933-018acacfba66?w=400&h=220&fit=crop",
+      "https://shopstop.al/wp-content/uploads/2020/10/web-camera-full-hd-1080P-buy-online-shopstop-al.jpg",
   },
   {
     id: 11,
@@ -129,7 +129,7 @@ const products = [
     description:
       "Portable waterproof Bluetooth speaker with 360-degree sound and 12-hour battery capacity.",
     image:
-      "https://images.unsplash.com/photo-1589003077984-894e133814c9?w=400&h=220&fit=crop",
+      "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcR9cYWSaBNIhOPF2gguIun1olGtIYrHAlOO7w&s",
   },
   {
     id: 13,
