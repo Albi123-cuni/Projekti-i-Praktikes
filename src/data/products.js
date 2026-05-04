@@ -173,7 +173,7 @@ const products = [
     description:
       "Adjustable LED desk lamp with touch control and 5 brightness levels for optimal workspace lighting.",
     image:
-      "https://www.ikea.com/us/en/p/roedflik-desk-lamp-light-beige-40584057/",
+      "https://cdn.thewirecutter.com/wp-content/media/2022/04/desk-lamp-2048px-4856-2x1-1.jpg?width=2048&quality=75&crop=2:1&auto=webp",
   },
   {
     id: 17,
