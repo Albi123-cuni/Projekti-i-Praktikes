@@ -1,0 +1,41 @@
+.layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* HEADER */
+.header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 40px;
+  background: #111;
+  color: white;
+}
+
+.nav a {
+  margin: 0 10px;
+  color: white;
+  text-decoration: none;
+}
+
+.icons span {
+  margin-left: 10px;
+  cursor: pointer;
+}
+
+/* MAIN */
+.main {
+  flex: 1;
+  padding: 20px;
+  background: #f5f5f5;
+}
+
+/* FOOTER */
+.footer {
+  text-align: center;
+  padding: 20px;
+  background: #111;
+  color: white;
+}
