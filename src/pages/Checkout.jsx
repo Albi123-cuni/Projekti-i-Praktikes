@@ -80,7 +80,7 @@ export default function Checkout() {
 
 const styles = {
   container: {
-    minHeight: "100vh",
+    minHeight: "101vh",
     display: "flex",
     justifyContent: "center",
     alignItems: "center",
