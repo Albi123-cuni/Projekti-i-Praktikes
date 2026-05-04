@@ -1,10 +1,9 @@
-import React from "react";
-import "./layout.css";
+import React from "react"
+import "./Layout.css"
 
 const Layout = ({ children }) => {
   return (
-    <div className="layout">
-
+    <div className={layoutStyles.layout}>
       {/* HEADER */}
       <header className="header">
         <div className="logo">ShopX</div>
@@ -23,17 +22,14 @@ const Layout = ({ children }) => {
       </header>
 
       {/* MAIN CONTENT */}
-      <main className="main">
-        {children}
-      </main>
+      <main className="main">{children}</main>
 
       {/* FOOTER */}
       <footer className="footer">
         <p>© 2026 ShopX. All rights reserved.</p>
       </footer>
-
     </div>
-  );
-};
+  )
+}
 
-export default Layout;
+export default Layout
