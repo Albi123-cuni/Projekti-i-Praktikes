@@ -8,7 +8,7 @@ const products = [
     description:
       "Powerful 15-inch laptop with Intel i7 processor, 16GB RAM, and 512GB SSD. Perfect for professionals and creators.",
     image:
-      "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?w=400&h=220&fit=crop",
+      "https://www.youtube.com/watch?v=T7ZqdzO4cm4",
   },
   {
     id: 2,
@@ -19,7 +19,7 @@ const products = [
     description:
       "Latest flagship smartphone with 120Hz display, 5G connectivity, and advanced camera system.",
     image:
-      "https://images.unsplash.com/photo-1511707267537-b85faf00021e?w=400&h=220&fit=crop",
+      "https://media.wired.com/photos/5b22c5c4b878a15e9ce80d92/master/pass/iphonex-TA.jpg",
   },
   {
     id: 3,
@@ -30,7 +30,7 @@ const products = [
     description:
       "10.5-inch tablet with stunning display, great for entertainment and productivity on the go.",
     image:
-      "https://images.unsplash.com/photo-1526408529623-5dbed4b8e277?w=400&h=220&fit=crop",
+      "https://www.lenovo.com/us/en/p/tablets/android-tablets/lenovo-tab-series/lenovo-tab-plus/len103l0024?srsltid=AfmBOoqHjRE-NqhTITld6utzJhXylxwNgnKa4OriVEPk2i3yq3cmCtZL",
   },
   {
     id: 4,
@@ -41,7 +41,7 @@ const products = [
     description:
       "Premium noise-cancelling headphones with 30-hour battery life and crystal-clear sound quality.",
     image:
-      "https://images.unsplash.com/photo-1505740420928-5e560c06d30e?w=400&h=220&fit=crop",
+      "https://www.amazon.com/Bluetooth-Headphones-Cancelling-Wireless-Playtime/dp/B0C2D21HBX",
   },
   {
     id: 5,
@@ -52,7 +52,7 @@ const products = [
     description:
       "Professional mechanical keyboard with RGB lighting and tactile switches for gaming and typing.",
     image:
-      "https://images.unsplash.com/photo-1587829191301-4dfd189cd147?w=400&h=220&fit=crop",
+      "https://www.nytimes.com/wirecutter/reviews/our-favorite-mechanical-keyboards/",
   },
   {
     id: 6,
@@ -63,7 +63,7 @@ const products = [
     description:
       "High-precision gaming mouse with adjustable DPI and ergonomic design for competitive gaming.",
     image:
-      "https://images.unsplash.com/photo-1527814050087-3793815479db?w=400&h=220&fit=crop",
+      "https://www.maxgaming.com/en/wireless-mouses/g502-x-plus-wireless-gaming-mouse-rgb-black",
   },
   {
     id: 7,
@@ -74,7 +74,7 @@ const products = [
     description:
       "27-inch 4K monitor with HDR support and 144Hz refresh rate for immersive viewing experience.",
     image:
-      "https://images.unsplash.com/photo-1527864550417-7fd91fc51a46?w=400&h=220&fit=crop",
+      "https://www.philips.co.za/c-p/276E8VJSB_73/4k-ultra-hd-lcd-monitor",
   },
   {
     id: 8,
