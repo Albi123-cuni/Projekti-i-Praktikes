@@ -136,7 +136,7 @@ export default function Cart() {
             ...styles.checkoutBtn,
             ...(cart.length === 0 ? styles.buttonDisabled : {}),
           }}
-          onClick={() => navigate("/checkout")}
+          onClick={() => navigate("/checkout", { state:  total  })}
           disabled={cart.length === 0}
         >
           Continue Checkout

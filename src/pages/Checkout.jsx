@@ -1,163 +1,195 @@
-import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+  import {  useState } from "react";
+  import { useNavigate, useLocation } from "react-router-dom";
+  import Footer from "../components/Footer";
+  import { PayPalButtons } from "@paypal/react-paypal-js";
 
-import Footer from "../components/Footer";
-export default function Checkout() {
-  const navigate = useNavigate();
-  const [formData, setFormData] = useState({
-    name: "",
-    address: "",
-    email: "",
-    phone: "",
-    state: "",
-    city: "",
-    postalCode: "",
-  });
+  export default function Checkout() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const total = location.state || 0;
+    const [formData, setFormData] = useState({
+      name: "",
+      address: "",
+      email: "",
+      phone: "",
+      state: "",
+      city: "",
+      postalCode: "",
+    });
 
-  const handleChange = (e) => {
-    setFormData({ ...formData, [e.target.name]: e.target.value });
-  };
+    const handleChange = (e) => {
+      setFormData({ ...formData, [e.target.name]: e.target.value });
+    };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    alert("Payment processed!");
-  };
+    const handleSubmit = (e) => {
+      e.preventDefault();
+      alert("Payment processed!");
+    };
 
-  return (
-    <div style={styles.container}>
-      <div style={styles.box}>
-        <button style={styles.backBtn} onClick={() => navigate("/cart")}>
-          Back
-        </button>
-
-        <h2 style={styles.title}>Checkout</h2>
-
-        <form onSubmit={handleSubmit} style={styles.form}>
-          <input
-            type="text"
-            name="name"
-            placeholder="Full Name"
-            value={formData.name}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-
-          <input
-            type="text"
-            name="address"
-            placeholder="Address"
-            value={formData.address}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-
-          <input
-            type="email"
-            name="email"
-            placeholder="Email"
-            value={formData.email}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-
-          <input
-            type="tel"
-            name="phone"
-            placeholder="Phone"
-            value={formData.phone}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-
-          <input
-            type="text"
-            name="state"
-            placeholder="Shteti"
-            value={formData.state}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-
-          <input
-            type="text"
-            name="city"
-            placeholder="Qyteti"
-            value={formData.city}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-
-          <input
-            type="number"
-            name="postalCode"
-            placeholder="Kodi Postal"
-            value={formData.postalCode}
-            onChange={handleChange}
-            required
-            style={styles.input}
-          />
-
-          <button type="submit" style={styles.button}>
-            Pay
+    return (
+      <div style={styles.container}>
+        <div style={styles.box}>
+          <button style={styles.backBtn} onClick={() => navigate("/cart")}>
+            ← Back
           </button>
-        </form>
-      </div>
-      <Footer />
-    </div>
-  );
-}     
 
-const styles = {
-  container: {
-    minHeight: "101vh",
-    display: "flex",
-    justifyContent: "center",
-    alignItems: "center",
-    background: "#f5f5f5",
-    fontFamily: "Arial, sans-serif",
-  },
-  box: {
-    background: "#fff",
-    padding: "25px",
-    borderRadius: "8px",
-    width: "100%",
-    maxWidth: "400px",
-    border: "1px solid #ddd",
-  },
-  backBtn: {
-    background: "none",
-    border: "none",
-    cursor: "pointer",
-    marginBottom: "10px",
-    fontSize: "14px",
-  },
-  title: {
-    marginBottom: "15px",
-  },
-  form: {
-    display: "flex",
-    flexDirection: "column",
-    gap: "10px",
-  },
-  input: {
-    padding: "10px",
-    borderRadius: "5px",
-    border: "1px solid #ccc",
-    fontSize: "14px",
-  },
-  button: {
-    marginTop: "10px",
-    padding: "10px",
-    border: "none",
-    borderRadius: "5px",
-    background: "#333",
-    color: "#fff",
-    cursor: "pointer",
-  },
-};
+          <h2 style={styles.title}>Checkout</h2>
+
+          <form onSubmit={handleSubmit} style={styles.form}>
+            <input
+              type="text"
+              name="name"
+              placeholder="Full Name"
+              value={formData.name}
+              onChange={handleChange}
+              required
+              style={styles.input}
+            />
+
+            <input
+              type="text"
+              name="address"
+              placeholder="Address"
+              value={formData.address}
+              onChange={handleChange}
+              required
+              style={styles.input}
+            />
+
+            <input
+              type="email"
+              name="email"
+              placeholder="Email"
+              value={formData.email}
+              onChange={handleChange}
+              required
+              style={styles.input}
+            />
+
+            <input
+              type="tel"
+              name="phone"
+              placeholder="Phone"
+              value={formData.phone}
+              onChange={handleChange}
+              required
+              style={styles.input}
+            />
+
+            <input
+              type="text"
+              name="state"
+              placeholder="Shteti"
+              value={formData.state}
+              onChange={handleChange}
+              required
+              style={styles.input}
+            />
+
+            <input
+              type="text"
+              name="city"
+              placeholder="Qyteti"
+              value={formData.city}
+              onChange={handleChange}
+              required
+              style={styles.input}
+            />
+
+            <input
+              type="text"
+              name="postalCode"
+              placeholder="Kodi Postal"
+              value={formData.postalCode}
+              onChange={handleChange}
+              required
+              style={styles.input}
+            />
+
+            <button type="submit" style={styles.button}>
+              Pay - ${total}
+            </button>
+          </form>
+          <h3>Or pay with PayPal</h3>
+
+  <PayPalButtons
+
+    style={{ layout: "vertical" }}
+
+    createOrder={(data, actions) => {
+      return actions.order.create({
+        purchase_units: [
+          {
+            amount: {
+              value: total.toString(),
+            },
+          },
+        ],
+      });
+    }}
+
+    onApprove={(data, actions) => {
+    return actions.order.capture().then((details) => {
+        alert(`Paid by ${details.payer.name.given_name}`);
+        navigate("/");
+      });
+    }}
+
+    onError={(err) => {
+      console.error(err);
+      alert("Payment failed");
+    }}
+  />
+        </div>
+      </div>
+    );
+  }     
+
+  const styles = {
+    container: {
+      minHeight: "101vh",
+      display: "flex",
+      justifyContent: "center",
+      alignItems: "center",
+      background: "#f5f5f5",
+      fontFamily: "Arial, sans-serif",
+    },
+    box: {
+      background: "#fff",
+      padding: "25px",
+      borderRadius: "8px",
+      width: "100%",
+      maxWidth: "400px",
+      border: "1px solid #ddd",
+    },
+    backBtn: {
+      background: "none",
+      border: "none",
+      cursor: "pointer",
+      marginBottom: "10px",
+      fontSize: "14px",
+    },
+    title: {
+      marginBottom: "15px",
+    },
+    form: {
+      display: "flex",
+      flexDirection: "column",
+      gap: "10px",
+    },
+    input: {
+      padding: "10px",
+      borderRadius: "5px",
+      border: "1px solid #ccc",
+      fontSize: "14px",
+    },
+    button: {
+      marginTop: "10px",
+      padding: "10px",
+      border: "none",
+      borderRadius: "5px",
+      background: "#333",
+      color: "#fff",
+      cursor: "pointer",
+    },
+  };
