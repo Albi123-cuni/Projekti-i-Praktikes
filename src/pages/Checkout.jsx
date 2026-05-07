@@ -125,11 +125,10 @@ console.log(typeof total);
             currency_code: "USD",
             value: Number(total).toFixed(2),
           },
-        ],
-      });
-    }}
-
-   
+        },
+      ],
+    });
+  }}
 
   onApprove={async (data, actions) => {
     try {
