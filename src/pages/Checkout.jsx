@@ -25,7 +25,8 @@
       e.preventDefault();
       alert("Payment processed!");
     };
-
+console.log(total);
+console.log(typeof total);
     return (
       <div style={styles.container}>
         <div style={styles.box}>
@@ -112,34 +113,46 @@
           </form>
           <h3>Or pay with PayPal</h3>
 
-  <PayPalButtons
+   <PayPalButtons
+  style={{ layout: "vertical" }}
+  forceReRender={[total]}
 
-    style={{ layout: "vertical" }}
-
-    createOrder={(data, actions) => {
-      return actions.order.create({
-        purchase_units: [
-          {
-            amount: {
-              value: total.toString(),
-            },
+  createOrder={(data, actions) => {
+    return actions.order.create({
+      purchase_units: [
+        {
+          amount: {
+            currency_code: "USD",
+            value: Number(total).toFixed(2),
           },
         ],
       });
     }}
 
-    onApprove={(data, actions) => {
-    return actions.order.capture().then((details) => {
-        alert(`Paid by ${details.payer.name.given_name}`);
-        navigate("/");
-      });
-    }}
+   
 
-    onError={(err) => {
-      console.error(err);
-      alert("Payment failed");
-    }}
-  />
+  onApprove={async (data, actions) => {
+    try {
+      const details = await actions.order.capture();
+
+      console.log(details);
+
+      alert(
+        `Transaction completed by ${details.payer.name.given_name}`
+      );
+
+      navigate("/");
+    } catch (err) {
+      console.error("Capture error:", err);
+      alert("Payment capture failed");
+    }
+  }}
+
+  onError={(err) => {
+    console.error("PayPal Error:", err);
+    alert("PayPal payment failed");
+  }}
+/>
         </div>
       </div>
     );
