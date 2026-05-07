@@ -2,20 +2,20 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 
 export default function LoginPage() {
-  const [email, setEmail] = useState("");
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
   const navigate = useNavigate();
 
   const handleLogin = () => {
-    if (!email || !password) {
+    if (!username || !password) {
       setError("Please fill in all fields.");
       setSuccess(false);
       return;
     }
-    if (!email.includes("@")) {
-      setError("Please enter a valid email.");
+    if (username.length < 3) {
+      setError("Username must be at least 3 characters.");
       setSuccess(false);
       return;
     }
@@ -33,37 +33,35 @@ export default function LoginPage() {
       return;
     }
 
-    if (savedUser.email === email && savedUser.password === password) {
+    if (savedUser.username === username && savedUser.password === password) {
       setError("");
       setSuccess(true);
       localStorage.setItem("isLoggedIn", "true");
-      console.log("Login successful!");
-      
       setTimeout(() => {
         navigate("/");
       }, 1000);
     } else {
-      setError("Incorrect email or password.");
+      setError("Incorrect username or password.");
       setSuccess(false);
     }
   };
 
   const handleRegister = () => {
-    if (!email || !password) {
+    if (!username || !password) {
       setError("Please fill in all fields to register.");
       return;
     }
-    if (!email.includes("@")) {
-      setError("Please enter a valid email.");
+    if (username.length < 3) {
+      setError("Username must be at least 3 characters.");
       return;
     }
     if (password.length < 6) {
       setError("Password must be at least 6 characters.");
       return;
     }
-    localStorage.setItem("user", JSON.stringify({ email, password }));
+    localStorage.setItem("user", JSON.stringify({ username, password }));
     setError("");
-    alert(`Account created for ${email}! You can now login.`);
+    alert(`Account created for ${username}! You can now login.`);
   };
 
   return (
@@ -82,7 +80,7 @@ export default function LoginPage() {
     >
       <h2 style={{ textAlign: "center", marginBottom: "0.5rem" }}>Login</h2>
 
-    
+      
       {error && (
         <p
           style={{
@@ -114,18 +112,18 @@ export default function LoginPage() {
         </p>
       )}
 
-      
+    
       <div style={{ display: "flex", flexDirection: "column", gap: "0.3rem" }}>
-        <label style={{ fontSize: "14px", fontWeight: "bold" }}>Email</label>
+        <label style={{ fontSize: "14px", fontWeight: "bold" }}>Username</label>
         <input
-          type="email"
-          placeholder="Enter your email"
-          value={email}
-          onChange={(e) => setEmail(e.target.value)}
+          type="text"
+          placeholder="Enter your username"
+          value={username}
+          onChange={(e) => setUsername(e.target.value)}
           style={{
             padding: "0.6rem 1rem",
             borderRadius: "6px",
-            border: error && !email ? "1px solid red" : "1px solid #ccc",
+            border: error && !username ? "1px solid red" : "1px solid #ccc",
             fontSize: "16px",
           }}
         />
