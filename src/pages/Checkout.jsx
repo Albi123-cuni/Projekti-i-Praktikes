@@ -6,7 +6,10 @@
   export default function Checkout() {
     const navigate = useNavigate();
     const location = useLocation();
-    const total = location.state || 0;
+    const { total, cartItems } = location.state || {
+  total: 0,
+  cartItems: [],
+};
     const [formData, setFormData] = useState({
       name: "",
       address: "",
@@ -118,18 +121,36 @@ console.log(typeof total);
   forceReRender={[total]}
 
   createOrder={(data, actions) => {
-    return actions.order.create({
-      purchase_units: [
-        {
-          amount: {
-            currency_code: "USD",
-            value: Number(total).toFixed(2),
+  return actions.order.create({
+    purchase_units: [
+      {
+        amount: {
+          currency_code: "USD",
+
+          value: Number(total).toFixed(2),
+
+          breakdown: {
+            item_total: {
+              currency_code: "USD",
+              value: Number(total).toFixed(2),
+            },
           },
         },
-      ],
-    });
-  }}
 
+        items: cartItems.map((item) => ({
+          name: item.name,
+
+          quantity: String(item.quantity),
+
+          unit_amount: {
+            currency_code: "USD",
+            value: Number(item.price).toFixed(2),
+          },
+        })),
+      },
+    ],
+  });
+}}
   onApprove={async (data, actions) => {
     try {
       const details = await actions.order.capture();

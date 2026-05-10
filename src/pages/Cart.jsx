@@ -234,7 +234,21 @@ export default function Cart () {
             ...styles.checkoutBtn,
             ...(cart.length === 0 ? styles.buttonDisabled : {})
           }}
-          onClick={() => navigate('/checkout', { state: total })}
+          onClick={() => navigate('/checkout', {
+  state: {
+    total,
+    cartItems: cart.map(item => {
+      const prod = getProduct(item.id)
+
+      return {
+        id: item.id,
+        name: prod.name,
+        price: prod.price,
+        quantity: item.quantity,
+      }
+    }),
+  },
+})}
           disabled={cart.length === 0}
         >
           Continue Checkout
