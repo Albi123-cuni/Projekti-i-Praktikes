@@ -1,25 +1,13 @@
-import { useState, useEffect, useMemo } from "react";
-import { useSearchParams } from "react-router-dom";
+import { useState, useMemo } from "react";
 import ProductCard from "../components/ProductCard";
-import SearchBar from "../NavBar-components/SearchBar";
+import StoreSearch from "../NavBar-components/StoreSearch";
 import products from "../data/products";
-
 import Footer from "../components/Footer";
 
 export default function Store() {
-  const [searchParams] = useSearchParams();
-  const urlQuery = searchParams.get("search") || "";
-  const [search, setSearch] = useState(urlQuery);
- 
+  const [search, setSearch] = useState("");
   const [sortOrder, setSortOrder] = useState("default");
 
-  useEffect(() => {
-    if (urlQuery) {
-      setSearch(urlQuery);
-    }
-  }, [urlQuery]);
-
- 
   const processedProducts = useMemo(() => {
     let result = [...products].filter((product) =>
       product.name.toLowerCase().includes(search.toLowerCase())
@@ -61,7 +49,6 @@ export default function Store() {
     }
   };
 
- 
   const selectStyle = {
     padding: "12px 16px",
     borderRadius: "12px",
@@ -107,11 +94,10 @@ export default function Store() {
         padding: "16px",
         borderRadius: "16px"
       }}>
-        <SearchBar
+        <StoreSearch
           value={search}
           onSearch={setSearch}
           placeholder="Search items..."
-          style={{ width: "100%", maxWidth: "400px" }}
         />
         {/* Sort Dropdown */}
         <div style={{ position: "relative" }}>
@@ -163,7 +149,7 @@ export default function Store() {
           </p>
         </div>
       )}
-      <Footer     />
+      <Footer />
     </div>
   );
 }
