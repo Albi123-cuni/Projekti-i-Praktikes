@@ -308,7 +308,7 @@ export default function Cart() {
           onClick={() =>
             navigate("/checkout", {
               state: {
-                total: financedTotal,
+                total: financedTotal.toFixed(2),
                 subtotal: subtotalAfterDiscount,
                 discount,
                 months,
