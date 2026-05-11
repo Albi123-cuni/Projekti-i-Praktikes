@@ -10,6 +10,7 @@ export default function Cart() {
       const savedCart = localStorage.getItem("cart");
       return savedCart ? JSON.parse(savedCart) : [];
     } catch (error) {
+      console.log(error);
       return [];
     }
   });
