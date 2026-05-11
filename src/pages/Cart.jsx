@@ -90,7 +90,6 @@ export default function Cart() {
   };
 
   const interestRate = 0.12;
-
   const subtotalAfterDiscount = total - discount;
 
   const financedTotal =
@@ -309,11 +308,10 @@ export default function Cart() {
             navigate("/checkout", {
               state: {
                 total: financedTotal.toFixed(2),
-                subtotal: subtotalAfterDiscount,
-                discount,
+                discount: discount.toFixed(2),
                 months,
-                monthlyPayment,
-                interestRate,
+                monthlyPayment: monthlyPayment.toFixed(2),
+                interestRate: (interestRate * 100).toFixed(0),
                 cartItems: cart.map((item) => {
                   const prod = getProduct(item.id);
 
