@@ -7,8 +7,10 @@ import ProductCard from "../components/ProductCard";
 import products from "../data/products";
 import Search from "../NavBar-components/SearchBar";
 import Counter from "../Counter";
+import Banner from "../components/Banner";
 
 import "../App.css";
+
 
 export default function Home() {
   const [homeSearch, setHomeSearch] = useState("");
@@ -18,6 +20,8 @@ export default function Home() {
       product.name.toLowerCase().includes(homeSearch.toLowerCase())
     )
     .slice(0, 6);
+
+    
 
   const addToWishlist = (product) => {
     try {
@@ -66,6 +70,19 @@ export default function Home() {
           </p>
         </div>
 
+        
+  
+    <div>
+      {/* Banneri në krye */}
+      <Banner />
+
+      {/* Pjesa tjetër e faqes */}
+      <h1>Mirësevini në Dyqanin tonë</h1>
+      {/* ... produktet, kategoritë etj. */}
+    </div>
+  
+
+
         <div style={{ display: "flex", gap: "12px", alignItems: "center" }}>
           <Link
             to="/store"
@@ -77,6 +94,7 @@ export default function Home() {
               textDecoration: "none",
               fontWeight: 600,
             }}
+            
           >
             Shop the full collection
           </Link>
@@ -119,3 +137,5 @@ export default function Home() {
     </div>
   );
 }
+
+
